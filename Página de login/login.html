@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Login</title>
+    </head>
+<body> 
+
+    <form>
+   <div>
+        <div><label>Email</label></div>
+        <input type="email" name="email" id="email" oninput="validateFields()" placeholder="seu@email.com" class="email"/>
+   </div>
+   <div>
+        <div><label>Senha</label></div>
+        <input type="password" name="password" id="password" oninput="validateFields()" placeholder="insira sua senha"/>
+    </div>
+    <div>
+        <button type="button" class="esqueciSenha" id="recover-password-button" disabled="true">Esqueci minha senha</button>
+    </div>
+    <div>
+        <button type="button" disabled="true" id="login-button">Login</button>
+    </div>
+    <div>
+        <button type="button" class="cadastrar">Cadastrar</button>
+    </div>
+    </form> 
+
+</body>
+
+<link rel="stylesheet" href="login.css"/>
+
+<script src="login.js"></script>
+</html>
