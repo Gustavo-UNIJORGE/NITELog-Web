@@ -58,4 +58,5 @@ label {
 
 .error{
     color:rgb(189, 0, 0);
+    display: none;
 }
