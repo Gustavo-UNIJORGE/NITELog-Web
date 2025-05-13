@@ -10,10 +10,13 @@
    <div>
         <div><label>Email</label></div>
         <input type="email" name="email" id="email" oninput="validateFields()" placeholder="seu@email.com" class="email"/>
+        <div class="error">Email inválido</div>
+        <div class="error">Campo obrigatório</div>
    </div>
    <div>
         <div><label>Senha</label></div>
         <input type="password" name="password" id="password" oninput="validateFields()" placeholder="insira sua senha"/>
+        <div class="error">Campo obrigatório</div>
     </div>
     <div>
         <button type="button" class="esqueciSenha" id="recover-password-button" disabled="true">Esqueci minha senha</button>

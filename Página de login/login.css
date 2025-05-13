@@ -55,3 +55,7 @@ label {
     color: rgb(255, 255, 255); 
     font-size: 18px;
 }
+
+.error{
+    color:rgb(189, 0, 0);
+}
