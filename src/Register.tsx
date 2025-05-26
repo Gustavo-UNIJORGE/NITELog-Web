@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom';
 import {onChangeName, onChangeConfirmPassword} from './ScriptRegister';
 import {onChangeEmail, onChangePassword} from "./Script";
+import { Link } from 'react-router';
+import './assets/styles/Register.css'
 
 const Register = ({ }) => {
     return (

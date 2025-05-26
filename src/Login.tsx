@@ -1,5 +1,6 @@
 import {onChangeEmail, onChangePassword} from "./Script";
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
+import './assets/styles/Login.css'
 
 const Login = ({ }) => {
     return (
@@ -37,7 +38,7 @@ const Login = ({ }) => {
             <div className="register">
                 
                 <span>Não tem uma conta?</span>
-                <Link to="/cadastro" className="fazerCadastro">Fazer cadastro</Link>
+                <Link to="/register" className="fazerCadastro">Fazer cadastro</Link>
             </div>
 
         </form>
