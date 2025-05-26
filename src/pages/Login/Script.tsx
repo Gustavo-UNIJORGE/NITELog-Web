@@ -1,46 +1,51 @@
 export function onChangeEmail(){
-   toggleButtonsDisable();
-   toggleEmailErrors();
+    toggleButtonsDisable();
+    toggleEmailErrors();
 }
 
 export function onChangePassword(){
     toggleButtonsDisable();
     togglePasswordErrors();
-
 }
 
-function isEmailValid(){
+function validateEmail(email: string) {
+    return /\S+@\S+\.\S+/.test(email);
+}
+
+const isEmailValid = () => {
     const email = form.email().value;
-    if(!email){
+/*     if(!email){
         return false;
     }else{
         return validateEmail(email);
-    }
+    } */
+    return email ? validateEmail(email) : false;
 }
 
-function isPasswordValid(){
+const isPasswordValid = () => {
     const password = form.password().value;
-    if(!password){
+    /* if(!password){
         return false;
     }else{
         return true;
-    }
+    } */
+    return password ? true : false;
 }
 
 function toggleButtonsDisable(){
 
-    const emailValid = isEmailValid();
-    const passwordValid = isPasswordValid();
+    // const emailValid = isEmailValid();
+    // const passwordValid = isPasswordValid;
 
     const recoverBtn = form.recoverPasswordButton?.();
     const loginBtn = form.loginButton?.();
 
     if (recoverBtn) {
-        recoverBtn.disabled = !emailValid;
+        recoverBtn.disabled = !isEmailValid;
     }
 
     if (loginBtn) {
-        loginBtn.disabled = !passwordValid || !emailValid;
+        loginBtn.disabled = !isPasswordValid || !isEmailValid;
     }
 
 }
@@ -67,9 +72,6 @@ const form={
     recoverPasswordButton:()=>document.getElementById('recover-password-button')as HTMLInputElement,
 }
 
-function validateEmail(email: string) {
-    return /\S+@\S+\.\S+/.test(email);
-}
 
 const Script = () => null;
 export default Script;

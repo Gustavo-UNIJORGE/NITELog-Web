@@ -33,6 +33,7 @@ button:active {
 }
 
 button[disabled] {
+    cursor: not-allowed;
     opacity: 65%;
 }
 
@@ -106,7 +107,7 @@ input::placeholder {
 
 .esqueciSenhaPosicao {
     width: 100%;
-    text-align: left;
+    text-align: right;
 }
 
 .entrar {
@@ -131,7 +132,6 @@ input::placeholder {
 
 .error {
     color: #bd0000;
-    display: none;
     font-size: 12px;
     margin-top: 4px; 
 }
