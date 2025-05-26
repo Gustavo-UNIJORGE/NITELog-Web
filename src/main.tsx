@@ -6,6 +6,7 @@ import Home from './pages/Home/Home.tsx';
 import Login from './pages/Login/Login.tsx';
 import Register from './pages/Register/Register.tsx';
 import AuthLayout from './pages/AuthLayout.tsx';
+import ResetPassword from './pages/ResetPassword/ResetPassword.tsx';
 
 const root = document.getElementById('root');
 
@@ -16,7 +17,7 @@ ReactDOM.createRoot(root!).render(
       <Route element={<AuthLayout />}>
         <Route path='login' element={<Login />} />
         <Route path='register' element={<Register />} />
-      
+        <Route path='resetPassword' element={<ResetPassword />}/>
       </Route>
     </Routes>
   </BrowserRouter>

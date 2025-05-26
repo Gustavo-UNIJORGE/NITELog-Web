@@ -102,13 +102,14 @@ const Login = ({ }) => {
                     </div>
                 )}
                 <div className="esqueciSenhaPosicao">
-                    <button 
+{/*                     <button 
                         type="button" 
                         className="esqueciSenha" 
                         id="recover-password-button"  
                         disabled={errors.emailInvalid}>
                             Esqueceu a senha?
-                    </button>
+                    </button> */}
+                    <Link to="/resetPassword" className="esqueciSenha">Esqueceu a senha?</Link>
                 </div>
             </div>
 
