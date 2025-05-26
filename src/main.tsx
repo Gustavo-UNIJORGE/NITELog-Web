@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router';
 import './assets/styles/index.css'
-import Home from './Home.tsx';
-import Login from './Login.tsx';
-import Register from './Register.tsx';
+import Home from './pages/Home/Home.tsx';
+import Login from './pages/Login/Login.tsx';
+import Register from './pages/Register/Register.tsx';
 
 const root = document.getElementById('root');
 

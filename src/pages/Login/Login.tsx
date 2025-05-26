@@ -1,6 +1,6 @@
 import {onChangeEmail, onChangePassword} from "./Script";
 import { Link } from 'react-router';
-import './assets/styles/Login.css'
+import '../../assets/styles/Login.css'
 
 const Login = ({ }) => {
     return (
