@@ -1,15 +1,11 @@
 import {onChangeEmail, onChangePassword} from "./Script";
 import { Link } from 'react-router';
-import '../../assets/styles/Login.css'
 
 const Login = ({ }) => {
     return (
         <form className="forms">
 
-            <div className="tituloForms">
-                <div className="acessarPortal">Acessar o Portal</div>
-                <div className="texto">Bem-Vindo de volta</div>
-            </div>
+
 
             <div>
                 <div><label>Email</label></div>

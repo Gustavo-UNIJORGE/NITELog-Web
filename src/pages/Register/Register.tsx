@@ -1,16 +1,10 @@
 import {onChangeName, onChangeConfirmPassword} from './ScriptRegister';
 import {onChangeEmail, onChangePassword} from "../Login/Script";
 import { Link } from 'react-router';
-import '../../assets/styles/Register.css'
 
 const Register = ({ }) => {
     return (
         <form className="forms">
-
-            <div className="tituloForms">
-                <div className="acessarPortal">Acessar o Portal</div>
-                <div className="texto">Insira seus dados</div>
-            </div>
 
             <div>
                 <div><label>Nome completo</label></div>

@@ -7,19 +7,18 @@ body {
     padding: 0;
 }
 
-.forms {
+main {
     background: #ffffff;
     padding: 40px 20px;
-    position: fixed;
-    top: 0;
-    left: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     height: 100vh;
-    width: 33.3333vw;
+}
+
+.forms {
+    min-width: 33.3333vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    transform: none;
     box-sizing: border-box;
 }
 
@@ -135,4 +134,41 @@ input::placeholder {
     display: none;
     font-size: 12px;
     margin-top: 4px; 
+}
+
+.labelConfirmeSenha {
+    text-align: left;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #1e1e1e;
+    display: block;
+    margin-bottom: 3px;
+}
+
+.labelCadastrarEmail{
+    margin-top: 10px;
+}
+.labelCadastrarSenha{
+    margin-top: 10px;
+}
+.Cadastrar{
+    border-radius: 8px;
+    background: #2a0c4b;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 13px;
+    width: 300px;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.campoNome{
+    margin-bottom: 0px;
+}
+
+.labelEmail{
+    margin-top: 25px;
 }
