@@ -1,11 +1,51 @@
-import {onChangeName, onChangeConfirmPassword} from './ScriptRegister';
-import {onChangeEmail, onChangePassword} from "../Login/Script";
+import { useEffect, useState } from 'react';
+import validateEmail from '../../utils/validateEmail';
+import { handleInputChange } from '../../utils/handleEmailChange';
 
 const Register = ({ }) => {
 
+    const [formData, setFormData] = useState({
+        username: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+    });
+
+    const [errors, setErrors] = useState({
+        usernameRequired: false,
+        emailRequired: false,
+        emailInvalid: false,
+        passwordInvalid: false,
+        passwordConfirmInvalid: false
+    })
+
+    const [isValid, setIsValid] = useState(false);
+
+    const [validationEnabled, setValidationEnabled] = useState(false);
+
+    useEffect(() => {
+        if(validationEnabled) {
+            setErrors({
+                usernameRequired: !Boolean(formData.username),
+                emailRequired: !Boolean(formData.email),
+                emailInvalid: !validateEmail(formData.email),
+                passwordInvalid: !Boolean(formData.password),
+                passwordConfirmInvalid: formData.password !== formData.confirmPassword
+            });
+            setIsValid(Object.values(errors).every(error => error === false));
+        }
+        console.log(validationEnabled, isValid)
+    }, [formData.username, formData.email, formData.password, formData.confirmPassword])
+
+    const enableValidation = () => setValidationEnabled(true);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>, fieldName: keyof typeof formData) => {
+        handleInputChange(e, formData, setFormData, fieldName);
+    }
+
     const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('Usuário logado: ');
+        console.log('Usuário registrado: ', formData);
     }
 
     return (
@@ -14,18 +54,21 @@ const Register = ({ }) => {
             <div>
                 <label>Nome completo</label>
                 <input 
+                    className="campoNome" 
                     type="text" 
                     name="name" 
                     id="name" 
-                    onInput={onChangeName} 
+                    value={formData.username}
                     placeholder="Digite seu nome" 
-                    className="campoNome" 
+                    onChange={(e) => handleChange(e, 'username')} 
                 />
-                <div 
-                    className="error" 
-                    id="name-required-error">
-                        Campo obrigatório
-                </div>
+                {errors.usernameRequired && (
+                    <div 
+                        className="error" 
+                        id="name-required-error">
+                            Campo obrigatório
+                    </div>
+                )}
             </div>
 
 
@@ -35,22 +78,29 @@ const Register = ({ }) => {
                     Email
                 </label>
                 <input 
+                    className="campoEmail"
                     type="email" 
                     name="email" 
-                    onInput={onChangeEmail} 
                     id="email" 
+                    value={formData.email}
                     placeholder="Digite seu email" 
-                    className="campoEmail" />
-                <div 
-                    className="error" 
-                    id="email-invalid-error">
-                        Email inválido
-                </div>
-                <div 
-                    className="error" 
-                    id="email-required-error">
-                        Campo obrigatório
-                </div>
+                    onChange={(e) => handleChange(e, 'email')}
+                    onBlur={enableValidation}
+                    />
+                {errors.emailInvalid && (
+                    <div 
+                        className="error" 
+                        id="email-invalid-error">
+                            Email inválido
+                    </div>
+                )}
+                {errors.emailRequired && (
+                    <div 
+                        className="error" 
+                        id="email-required-error">
+                            Campo obrigatório
+                    </div>
+                )}
             </div>
 
 
@@ -59,47 +109,52 @@ const Register = ({ }) => {
                     Senha
                 </label>
                 <input 
+                    className="campoSenha" 
                     type="password" 
                     id="password" 
-                    onInput={onChangePassword} 
                     name="senha" 
+                    value={formData.password}
                     placeholder="Digite sua senha" 
-                    className="campoSenha" 
+                    onChange={(e) => handleChange(e, 'password')}
+                    onBlur={enableValidation}
                 />
-                <div 
-                    className="error" 
-                    id="password-required-error">
-                        Campo obrigatório
-                </div>
+                {errors.passwordInvalid && (
+                    <div 
+                        className="error" 
+                        id="password-required-error">
+                            Senha inválida
+                    </div>
+                )}
             </div>
 
             <div>
                 <label>Confirme sua senha</label>
                 <input 
+                    className="campoSenha"
                     type="password" 
                     id="confirmPassword" 
-                    onInput={onChangeConfirmPassword} 
                     name="confirmeSenha" 
+                    value={formData.confirmPassword}
                     placeholder="Digite sua senha" 
-                    className="campoSenha" />
-                <div 
-                    className="error" 
-                    id="confirmPassword-required-error">
-                        Campo obrigatório
-                </div>
-                <div 
-                    className="error" 
-                    id="confirmPassword-invalid-error">
-                        Senha inválida
-                </div>
+                    onChange={(e) => handleChange(e, 'confirmPassword')}
+                    onBlur={enableValidation}
+                    />
+                {errors.passwordConfirmInvalid && (
+                    <div 
+                        className="error" 
+                        id="confirmPassword-invalid-error">
+                            Senhas não coincidem
+                    </div>
+                )}
+                
             </div>
 
             <div className="register">
                 <button 
-                    type="button" 
+                    type="submit" 
                     className="entrar" 
                     id="login-button" 
-                    disabled={true}>Cadastrar-se</button>
+                    disabled={!isValid}>Cadastrar-se</button>
             </div>
 
         </form>

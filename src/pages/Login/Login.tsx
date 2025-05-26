@@ -1,6 +1,8 @@
 import type React from "react";
 import { Link } from 'react-router';
 import { useEffect, useState } from "react";
+import validateEmail from "../../utils/validateEmail";
+import { handleInputChange } from "../../utils/handleEmailChange";
 
 const Login = ({ }) => {
     const [formData, setFormData] = useState({
@@ -12,37 +14,35 @@ const Login = ({ }) => {
         emailInvalid: false,
         passwordInvalid: false
     })
-
+    
     const [isValid, setIsValid] = useState(false);
 
-    const validateEmail = (email:string) => {
-        return (email && /\S+@\S+\.\S+/.test(email)) as boolean;
-    }
+    const [validationEnabled, setValidationEnabled] = useState(false);
 
     useEffect(() => {
-        setErrors({
-            emailRequired: !Boolean(formData.email),
-            emailInvalid: !validateEmail(formData.email),
-            passwordInvalid: !Boolean(formData.password)
-        });
-
-
-        setIsValid(!errors.emailInvalid && !errors.passwordInvalid)
-        console.log(errors)
-
+        if (validationEnabled) {
+            setErrors({
+                emailRequired: !Boolean(formData.email),
+                emailInvalid: !validateEmail(formData.email),
+                passwordInvalid: !Boolean(formData.password)
+            });
+    
+            setIsValid(!errors.emailInvalid && !errors.passwordInvalid)
+        }
     }, [formData.email, formData.password])
 
-    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({...formData, email: e.target.value})
-    }
+    const enableValidation = () => setValidationEnabled(true);
 
-    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({...formData, password: e.target.value})
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>, fieldName: keyof typeof formData) => {
+        handleInputChange(e, formData, setFormData, fieldName);
     }
 
     const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('Usuário logado: ');
+        enableValidation();
+        if(isValid) {
+            console.log('Usuário logado: ', formData);
+        }
     }
 
     return (
@@ -54,12 +54,13 @@ const Login = ({ }) => {
                 </label>
                 <input 
                     type="email" 
-                    onInput={handleEmailChange}
-                    value={formData.email}
                     name="email" 
                     id="email" 
+                    className="campoEmail"
+                    value={formData.email}
                     placeholder="Digite seu email" 
-                    className={`campoEmail`} 
+                    onChange={(e) => handleChange(e, 'email')}
+                    onBlur={enableValidation}
                 />
                 {errors.emailInvalid && (
                     <div 
@@ -87,10 +88,11 @@ const Login = ({ }) => {
                     type="password" 
                     id="password" 
                     name="password" 
-                    value={formData.password}
-                    onInput={handlePasswordChange} 
-                    placeholder="Digite sua senha" 
                     className="campoSenha" 
+                    value={formData.password}
+                    placeholder="Digite sua senha" 
+                    onChange={(e) => handleChange(e, 'password')} 
+                    onBlur={enableValidation}
                 />
                 {errors.passwordInvalid && (
                     <div 
