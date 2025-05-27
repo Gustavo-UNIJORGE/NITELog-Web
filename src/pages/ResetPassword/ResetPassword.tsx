@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import validateEmail from "../../utils/validateEmail";
 import { handleInputChange } from "../../utils/handleEmailChange";
 
-const ResetPassword = ({ }) => {
+const ResetPassword = () => {
     const [formData, setFormData] = useState({
         email: '',
     })
@@ -22,17 +22,17 @@ const ResetPassword = ({ }) => {
     useEffect(() => {
         if (validationEnabled) {
             setErrors({
-                emailRequired: !Boolean(formData.email),
+                emailRequired: !(formData.email),
                 emailInvalid: !validateEmail(formData.email)
             });    
         }
-    }, [formData.email])
+    }, [formData.email, validationEnabled])
     // Altera o estado da validade do formulário se houver alterações nos erros
     useEffect(() => {
         if (validationEnabled) {
             setIsValid(Object.values(errors).every(error => error === false))
         }
-    }, [errors])
+    }, [errors, validationEnabled])
 
     /* OBS: Não foi possível unir esses dois useEffect um altera a dependencia
     do outro, dessa forma um unico useEffect ficaria permanentemente em looping */
