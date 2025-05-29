@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import validateEmail from '../../utils/validateEmail';
 import { handleInputChange } from '../../utils/handleEmailChange';
 
-const Register = ({ }) => {
+const Register = () => {
 
     const [formData, setFormData] = useState({
         username: '',
@@ -26,16 +26,16 @@ const Register = ({ }) => {
     useEffect(() => {
         if(validationEnabled) {
             setErrors({
-                usernameRequired: !Boolean(formData.username),
-                emailRequired: !Boolean(formData.email),
+                usernameRequired: !(formData.username),
+                emailRequired: !(formData.email),
                 emailInvalid: !validateEmail(formData.email),
-                passwordInvalid: !Boolean(formData.password),
-                passwordConfirmInvalid: formData.password !== formData.confirmPassword
+                passwordInvalid: !(formData.password),
+                passwordConfirmInvalid: formData.password != formData.confirmPassword
             });
+            console.log(errors, Object.values(errors).every(error => error === false))
             setIsValid(Object.values(errors).every(error => error === false));
         }
-        console.log(validationEnabled, isValid)
-    }, [formData.username, formData.email, formData.password, formData.confirmPassword])
+    }, [formData])
 
     const enableValidation = () => setValidationEnabled(true);
 
