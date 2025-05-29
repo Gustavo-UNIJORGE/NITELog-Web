@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "start": "vite --host 0.0.0.0 --port 8080",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -25,6 +26,8 @@
     "globals": "^16.0.0",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.30.1",
-    "vite": "^6.3.5"
-  }
+    "vite": "^6.3.5",
+    "@types/bun": "latest"
+  },
+  "module": "index.ts"
 }
