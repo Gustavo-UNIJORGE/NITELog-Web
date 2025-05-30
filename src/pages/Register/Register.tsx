@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import validateEmail from '../../utils/validateEmail';
 import { handleInputChange } from '../../utils/handleEmailChange';
 import { apiService } from '../../services/apiServices';
+import { Link } from 'react-router';
 
 const Register = () => {
 
@@ -25,7 +26,7 @@ const Register = () => {
     const [validationEnabled, setValidationEnabled] = useState(false);
 
     useEffect(() => {
-        if(validationEnabled) {
+        if (validationEnabled) {
             setErrors({
                 usernameRequired: !(formData.username),
                 emailRequired: !(formData.email),
@@ -47,12 +48,12 @@ const Register = () => {
     const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         const data = {
-            password : formData.confirmPassword,
-            email : formData.email,
-            username : formData.username
+            password: formData.confirmPassword,
+            email: formData.email,
+            username: formData.username
         }
         console.log(data);
-        apiService.registerUser( data );
+        apiService.registerUser(data);
         //console.log('Usuário registrado: ', formData);
     }
 
@@ -61,20 +62,20 @@ const Register = () => {
 
             <div>
                 <label>Nome completo</label>
-                <input 
-                    className="campoNome" 
-                    type="text" 
-                    name="name" 
-                    id="name" 
+                <input
+                    className="campoNome"
+                    type="text"
+                    name="name"
+                    id="name"
                     value={formData.username}
-                    placeholder="Digite seu nome" 
-                    onChange={(e) => handleChange(e, 'username')} 
+                    placeholder="Digite seu nome"
+                    onChange={(e) => handleChange(e, 'username')}
                 />
                 {errors.usernameRequired && (
-                    <div 
-                        className="error" 
+                    <div
+                        className="error"
                         id="name-required-error">
-                            Campo obrigatório
+                        Campo obrigatório
                     </div>
                 )}
             </div>
@@ -85,28 +86,28 @@ const Register = () => {
                 <label className="labelCadastrarEmail">
                     Email
                 </label>
-                <input 
+                <input
                     className="campoEmail"
-                    type="email" 
-                    name="email" 
-                    id="email" 
+                    type="email"
+                    name="email"
+                    id="email"
                     value={formData.email}
-                    placeholder="Digite seu email" 
+                    placeholder="Digite seu email"
                     onChange={(e) => handleChange(e, 'email')}
                     onBlur={enableValidation}
-                    />
+                />
                 {errors.emailInvalid && (
-                    <div 
-                        className="error" 
+                    <div
+                        className="error"
                         id="email-invalid-error">
-                            Email inválido
+                        Email inválido
                     </div>
                 )}
                 {errors.emailRequired && (
-                    <div 
-                        className="error" 
+                    <div
+                        className="error"
                         id="email-required-error">
-                            Campo obrigatório
+                        Campo obrigatório
                     </div>
                 )}
             </div>
@@ -116,55 +117,57 @@ const Register = () => {
                 <label className="labelCadastrarSenha">
                     Senha
                 </label>
-                <input 
-                    className="campoSenha" 
-                    type="password" 
-                    id="password" 
-                    name="senha" 
+                <input
+                    className="campoSenha"
+                    type="password"
+                    id="password"
+                    name="senha"
                     value={formData.password}
-                    placeholder="Digite sua senha" 
+                    placeholder="Digite sua senha"
                     onChange={(e) => handleChange(e, 'password')}
                     onBlur={enableValidation}
                 />
                 {errors.passwordInvalid && (
-                    <div 
-                        className="error" 
+                    <div
+                        className="error"
                         id="password-required-error">
-                            Senha inválida
+                        Senha inválida
                     </div>
                 )}
             </div>
 
             <div>
                 <label>Confirme sua senha</label>
-                <input 
+                <input
                     className="campoSenha"
-                    type="password" 
-                    id="confirmPassword" 
-                    name="confirmeSenha" 
+                    type="password"
+                    id="confirmPassword"
+                    name="confirmeSenha"
                     value={formData.confirmPassword}
-                    placeholder="Digite sua senha" 
+                    placeholder="Digite sua senha"
                     onChange={(e) => handleChange(e, 'confirmPassword')}
                     onBlur={enableValidation}
-                    />
+                />
                 {errors.passwordConfirmInvalid && (
-                    <div 
-                        className="error" 
+                    <div
+                        className="error"
                         id="confirmPassword-invalid-error">
-                            Senhas não coincidem
+                        Senhas não coincidem
                     </div>
                 )}
-                
+
             </div>
 
             <div className="register">
-                <button 
-                    type="submit" 
-                    className="entrar" 
-                    id="login-button" 
+                <button
+                    type="submit"
+                    className="entrar"
+                    id="login-button"
                     disabled={isValid}>Cadastrar-se</button>
             </div>
-
+            <div>
+                <Link to='/login'>Retornar para o Login</Link>
+            </div>
         </form>
     )
 }
