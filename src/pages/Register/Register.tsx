@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import validateEmail from '../../utils/validateEmail';
 import { handleInputChange } from '../../utils/handleEmailChange';
+import { apiService } from '../../services/apiServices';
 
 const Register = () => {
 
@@ -45,7 +46,14 @@ const Register = () => {
 
     const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('Usuário registrado: ', formData);
+        const data = {
+            password : formData.confirmPassword,
+            email : formData.email,
+            username : formData.username
+        }
+        console.log(data);
+        apiService.registerUser( data );
+        //console.log('Usuário registrado: ', formData);
     }
 
     return (
@@ -154,7 +162,7 @@ const Register = () => {
                     type="submit" 
                     className="entrar" 
                     id="login-button" 
-                    disabled={!isValid}>Cadastrar-se</button>
+                    disabled={isValid}>Cadastrar-se</button>
             </div>
 
         </form>
