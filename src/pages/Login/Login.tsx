@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { useEffect, useState } from "react";
 import validateEmail from "../../utils/validateEmail";
 import { handleInputChange } from "../../utils/handleEmailChange";
+import { apiService } from "../../services/apiServices";
 
 const Login = ({ }) => {
     const [formData, setFormData] = useState({
@@ -41,7 +42,8 @@ const Login = ({ }) => {
         e.preventDefault();
         enableValidation();
         if(isValid) {
-            console.log('Usuário logado: ', formData);
+            apiService.loginUser(formData);
+            //console.log('Usuário logado: ', formData);
         }
     }
 
