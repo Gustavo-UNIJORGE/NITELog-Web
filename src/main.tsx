@@ -9,7 +9,7 @@ import AuthLayout from '@/auth/AuthLayout.tsx';
 import ResetPassword from '@/auth/ResetPassword.tsx';
 import QRCodeLayout from '@/qr-code/QRCodeLayout.tsx';
 import routes from './routes';
-import DocsIndex from './pages/Docs';
+import DocsIndex from './modules/docs/Docs';
 
 const root = document.getElementById('root');
 

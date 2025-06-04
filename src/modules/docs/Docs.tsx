@@ -3,21 +3,20 @@ import Markdown from 'react-markdown';
 // import content from '@root/assets/docs/';
 
 const DocsIndex = () => {
+    const filename = 'Aliasing.md';
+    const rootpath = '../../assets/docs';
     const [promise, setPromise] = useState<Promise<string>>()
-    const [filename] = useState('Aliasing.md');
     const [content, setContent] = useState<string>('');
     const [error, setError] = useState<string>('');
 
     useEffect(() => {
         const loadFile = async () => {
             try {
+                const path = new URL(`${rootpath}/${filename}`, import.meta.url); 
+                console.log(path)
                 // Caminho correto considerando a estrutura do projeto
-                await fetch(new URL(`../assets/docs/${filename}`, import.meta.url))
+                await fetch(path)
                     .then(response => setPromise(response.text()))
-                    .then(response => console.log(response))
-                await promise?.then(
-                    content => setContent(content)
-                )
                     
             } catch (err) {
                 setError('Erro ao carregar o arquivo');
@@ -26,8 +25,19 @@ const DocsIndex = () => {
         };
 
         loadFile();
-    }, [filename, promise]);
-    
+    }, [filename]);
+    useEffect(() => {
+        const loadContent = async () => {
+            try {
+                await promise?.then(content => setContent(content))
+            } catch (err) {
+                setError('Erro ao ler o conteúdo');
+                console.error('Front-end: Erro no carregamento', err);
+            }
+        };
+
+        loadContent();
+    }, [promise])
     return (
         <div>
             <h1>Docs</h1>
