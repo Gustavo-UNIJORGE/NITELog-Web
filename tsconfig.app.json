@@ -21,7 +21,14 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@": ["/src/modules/*"],
+      "@root/*": ["/src/*"],
+      "@component/*": ["/src/components/*"],
+      "@public": ["./public/*"]
+    }
   },
-  "include": ["src"]
+  "include": ["src/*.ts","src/**/*.ts", "src/**/*.tsx"]
 }
