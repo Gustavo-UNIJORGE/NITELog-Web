@@ -11,10 +11,13 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@':  path.resolve(__dirname, 'src/'),
-      '@modules':  path.resolve(__dirname,  'src/modules/'),
-      '@component': path.resolve(__dirname, 'src/components'),
-      '@public': path.resolve(__dirname, 'public')
+      '@':  path.resolve(__dirname, 'src/modules'),
+      '@root':  path.resolve(__dirname,  'src'),
+      '@routes': path.resolve(__dirname, 'src/routes.ts'),
+      '@pages': path.resolve(__dirname, 'src/pages'),
+      '@component': path.resolve(__dirname, 'component'),
+      '@public': path.resolve(__dirname, 'public'),
+      '@styles': path.resolve(__dirname, 'src', 'assets/styles')
     }
   }
 })

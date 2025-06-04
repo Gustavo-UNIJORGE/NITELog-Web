@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import routes from "@/routes.ts";
+import routes from "@routes";
 
 const Home = () => {
     return(

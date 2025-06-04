@@ -22,12 +22,17 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-    "baseUrl": "./src",
+
+    /* Files Aliasing */
+    "baseUrl": "./",
     "paths": {
-      "@": ["/src/modules/*"],
-      "@root/*": ["/src/*"],
-      "@component/*": ["/src/components/*"],
-      "@public": ["./public/*"]
+      "@/*": ["src/modules/*"],
+      "@root/*": ["src/*"],
+      "@routes": ["src/routes.ts"],
+      "@pages/*": ["src/pages/*"],
+      "@component/*": ["src/components/*"],
+      "@public/*": ["public/*"],
+      "@styles/*": ["src/assets/styles/*"]
     }
   },
   "include": ["src/*.ts","src/**/*.ts", "src/**/*.tsx"]
