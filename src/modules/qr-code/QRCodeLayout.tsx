@@ -1,4 +1,4 @@
-const QrCodeIndex = () => {
+const QRCodeLayout = () => {
     return(
         <main>
             <h1>QR Code</h1>
@@ -8,4 +8,4 @@ const QrCodeIndex = () => {
     )
 }
 
-export default QrCodeIndex
+export default QRCodeLayout
