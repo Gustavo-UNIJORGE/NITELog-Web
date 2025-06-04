@@ -26,7 +26,7 @@ ReactDOM.createRoot(root!).render(
         <Route element={<QRCodeLayout />} path={routes.QRCODE}>
           <Route index />
         </Route>
-        <Route element={<DocsIndex />} path='docs'>
+        <Route element={<DocsIndex />} path={routes.DOCS}>
 
         </Route>
       </Route>
