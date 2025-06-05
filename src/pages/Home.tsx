@@ -1,9 +1,11 @@
 import { Link } from "react-router";
 import routes from "@routes";
+import NavBar from "@root/shared/Navbar";
 
 const Home = () => {
     return(
         <>
+            <NavBar />
             <h1>Página Inicial</h1>
             <div className="nav">
                 <Link to={routes.LOGIN}>Login</Link>
