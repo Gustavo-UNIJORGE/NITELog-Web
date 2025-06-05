@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
 body {
-    background: #330f6b;
+    background: linear-gradient(90deg,rgb(42, 12, 75),rgb(59, 17, 104),rgb(123, 37, 214));
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
@@ -99,7 +99,7 @@ input::placeholder {
     color: #2a0c4b;
     border: none;
     background: transparent;
-    font-size: 12px;
+    font-size: 13px;
     padding: 0px;
     margin-bottom: 50px;
     font-weight: bold;
@@ -107,7 +107,7 @@ input::placeholder {
 
 .esqueciSenhaPosicao {
     width: 100%;
-    text-align: right;
+    text-align: left;
 }
 
 .entrar {
@@ -120,6 +120,7 @@ input::placeholder {
     height: 38px;
     width: 320px;
     text-transform: uppercase;
+    margin-top: 15px;
 }
 
 .fazerCadastro {
@@ -128,6 +129,7 @@ input::placeholder {
     padding: 0px;
     border: none;
     font-weight: bold;
+    font-size: 13px;
 }
 
 .error {
@@ -171,4 +173,25 @@ input::placeholder {
 
 .labelEmail{
     margin-top: 25px;
+}
+
+.retornarLogin, .retornarLoginPosicao{
+    background: transparent;
+    color: #2a0c4b;
+    padding: 0px;
+    border: none;
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    transform: translateX(-8%);
+
+}
+
+.sucess {
+    color: #2a0580;
+    font-size: 12px;
+    margin-top: 4px; 
 }
