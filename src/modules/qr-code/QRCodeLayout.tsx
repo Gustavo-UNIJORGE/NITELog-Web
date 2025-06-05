@@ -1,9 +1,12 @@
-const QRCodeLayout = () => {
+import { Outlet } from "react-router"
+import '@styles/qrcode.css'
+import type { PropsWithChildren } from "react"
+
+const QRCodeLayout = ({children}: PropsWithChildren) => {
     return(
-        <main>
+        <main id="qr-code">
             <h1>QR Code</h1>
-            <p>aaa</p>
-            <span>Escaneie o QR Code acima para marcar presença </span>
+            {children || <Outlet />}
         </main>
     )
 }
