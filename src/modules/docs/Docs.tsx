@@ -1,32 +1,75 @@
 import { useEffect, useState } from 'react'
-import Markdown from 'react-markdown';
 import DocPage from './DocPage';
+import DocsNav from './DocsNav';
 // import content from '@root/assets/docs/';
 
 const DocsIndex = () => {
     const filename = 'Aliasing.md';
-    const rootpath = '../../assets/docs';
+    const [isLoading, setLoading] = useState<boolean>(false)
+    const [fileNames, setFileNames] = useState<string[]>([])
+    const [selectedFileName, setSelectedFileName] = useState<string>('');
+    const root = 'assets/docs';
+    const rootpath = `../../`;
     const [promise, setPromise] = useState<Promise<string>>()
     const [content, setContent] = useState<string>('');
     const [error, setError] = useState<string>('');
-
+    
     useEffect(() => {
-        const loadFile = async () => {
+        const loadFileNames = async () => {
+            setLoading(true);
             try {
-                const path = new URL(`${rootpath}/${filename}`, import.meta.url); 
-                console.log(path)
+                // const path = `./${root}/${filename}`; 
+                const path = '../../assets/docs/*.md' 
+                // const files = import.meta.glob('../../assets/docs/*.md');
+                const files = import.meta.glob('../../assets/docs/*.md');
+                setFileNames(Object.keys(files).map(file => 
+                    file.split('/').pop() || ''
+                ));
+                // setFileList(fileName.filter(Boolean))
                 // Caminho correto considerando a estrutura do projeto
-                await fetch(path)
-                    .then(response => setPromise(response.text()))
-                    
+                if (fileNames.length > 0) 
+                    setSelectedFileName(fileNames[0])
+                
             } catch (err) {
                 setError('Erro ao carregar o arquivo');
                 console.error('Erro na leitura:', err);
+            } finally {
+                setLoading(false);
             }
         };
+        
+        loadFileNames();
+    }, []);
 
-        loadFile();
-    }, [filename]);
+    useEffect(() => {
+        if(!selectedFileName) return;
+
+        const loadFileContent = async () => {
+            setLoading(true);
+
+            try {
+                const path = new URL(`${selectedFileName}`, import.meta.url).href;
+                const response = await fetch(path);
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch file content');
+                }
+
+                const text = response.text();
+
+                setPromise(text);
+                setError('');
+            } catch (err) {
+                setError('Erro ao carregar conteúdo da página');
+                console.error(error, ': ', err)
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        loadFileContent()
+    }, [selectedFileName])
+    
     useEffect(() => {
         const loadContent = async () => {
             try {
@@ -36,30 +79,29 @@ const DocsIndex = () => {
                 console.error('Front-end: Erro no carregamento', err);
             }
         };
-
+        
         loadContent();
     }, [promise])
+    
+    useEffect(() => {
+        
+    }, [selectedFileName])
     return (
-        <main id="docs" className='grid-simple'>
-            <header>
-                <h1>Docs</h1>
-
-            </header>
-            <aside id='doc-nav'>
-                link
-            </aside>
-            <div id="docs-reader">
-                <span id='filename'>{filename}</span>
-                {error && 
-                    <div className='error'>
-                        {error}
-                    </div>
-                }
-                <DocPage content={content} />
-            </div>
-
-        </main>
-
+        <>
+            {(isLoading) ? (
+            <div>Carregando...</div>
+            ) : (
+            <main id="docs" className='grid-simple'>
+                <header>
+                    <h1>Docs</h1>
+                </header>
+                <DocsNav fileNames={fileNames} selected={selectedFileName} />
+                <DocPage path={root} file={selectedFileName} error={error} content={content} />
+            </main> 
+            ) }
+            
+        </>
+        
     )
 }
 export default DocsIndex
