@@ -10,6 +10,7 @@ import ResetPassword from '@/auth/ResetPassword.tsx';
 import QRCodeLayout from '@/qr-code/QRCodeLayout.tsx';
 import routes from './routes';
 import DocsIndex from './modules/docs/Docs';
+import DocsLayout from '@/docs/DocsLayout';
 
 const root = document.getElementById('root');
 
@@ -26,8 +27,8 @@ ReactDOM.createRoot(root!).render(
         <Route element={<QRCodeLayout />} path={routes.QRCODE}>
           <Route index />
         </Route>
-        <Route element={<DocsIndex />} path={routes.DOCS}>
-
+        <Route element={<DocsLayout/>} path={routes.DOCS}>
+          <Route index element={<DocsIndex />} />
         </Route>
       </Route>
     </Routes>

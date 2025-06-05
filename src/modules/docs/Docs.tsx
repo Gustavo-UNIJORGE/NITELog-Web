@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import Markdown from 'react-markdown';
+import DocPage from './DocPage';
 // import content from '@root/assets/docs/';
 
 const DocsIndex = () => {
@@ -39,15 +40,26 @@ const DocsIndex = () => {
         loadContent();
     }, [promise])
     return (
-        <div>
-            <h1>Docs</h1>
-            {error && 
-                <div className='error'>
-                    {error}
-                </div>
-            }
-            <Markdown>{content}</Markdown>
-        </div>
+        <main id="docs" className='grid-simple'>
+            <header>
+                <h1>Docs</h1>
+
+            </header>
+            <aside id='doc-nav'>
+                link
+            </aside>
+            <div id="docs-reader">
+                <span id='filename'>{filename}</span>
+                {error && 
+                    <div className='error'>
+                        {error}
+                    </div>
+                }
+                <DocPage content={content} />
+            </div>
+
+        </main>
+
     )
 }
 export default DocsIndex

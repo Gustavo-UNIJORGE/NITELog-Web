@@ -1,11 +1,18 @@
 :root {
+  --text-color-rgb: rgb(242, 242, 242);
+  --text-color-hex: #f2f2f2;
+
+  --background-color-rgb: rgb(36, 36, 36);
+  --background-color-hex: #242424;
+
+  --action-text-color-hex: #646cff;
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: var(--text-color-hex);
+  background-color: var(--background-color-hex);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,19 +22,19 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--action-text-color-hex);
   text-decoration: inherit;
 }
 a:hover {
   color: #535bf2;
 }
-
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
   min-height: 100vh;
+}
+main {
+  display: flex;
+  min-width: 320px;
 }
 
 h1 {
@@ -47,7 +54,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: var(--action-text-color-hex);
 }
 button:focus,
 button:focus-visible {
@@ -56,8 +63,8 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: var(--background-color-hex);
+    background-color: var(--text-color-hex);
   }
   a:hover {
     color: #747bff;
@@ -71,3 +78,59 @@ button:focus-visible {
   display: flex; 
   flex-direction: column;
 }
+main {
+  color: black;
+}
+
+
+main.grid-simple {
+  display: grid;
+  grid-template-columns: 10% auto 1fr;
+  grid-template-rows: auto 1fr 60vh;
+  grid-template-areas: 
+    "header header header"
+    "aside main main"
+    "footer footer footer"
+  ;
+  /* max-height: 80vh;   */
+}
+main.grid-simple header {
+  grid-area: header;
+}
+main.grid-simple header h1 {
+  font-size: 3em;
+  margin: 0;
+}
+main.grid-simple footer {
+  grid-area: footer;
+}
+main#docs {
+  background-color: #213547;
+
+}
+#docs-reader {
+  display: flex;
+  flex-direction: column;
+  background-color: slategrey;
+  padding: 1em;
+  padding-bottom: 3em;
+  border-radius: 8px;
+  min-height: 80vh;
+}
+
+#docs-reader span#filename {
+  font-weight: 800;
+}
+#markdown-container {
+  font-family: inherit;
+  background-color: slateblue;
+  padding: 2em 4em;
+  gap: 0;
+}
+#markdown-container * {
+  cursor: default
+}
+#markdown-container h1 {
+  cursor: text;
+}
+
