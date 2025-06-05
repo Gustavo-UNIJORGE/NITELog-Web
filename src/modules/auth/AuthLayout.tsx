@@ -1,12 +1,10 @@
 import type { PropsWithChildren } from "react";
 import { Outlet } from "react-router";
 import './styles/AuthStyles.css'
-import NavBar from "@root/shared/Navbar";
 
 const AuthLayout = ({ children }: PropsWithChildren) => {
     return(
         <>
-            <NavBar />
             <main>
                 <div className="tituloForms">
                     <div className="acessarPortal">Acessar o Portal</div>
