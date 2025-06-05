@@ -2,7 +2,7 @@ import type React from "react";
 
 interface DocsNavProps {
     fileNames: string[],
-    handleSelect: (event: React.MouseEvent) => void,
+    handleSelect: (event: React.MouseEvent<HTMLButtonElement>) => void,
     selected: string
 }
 
