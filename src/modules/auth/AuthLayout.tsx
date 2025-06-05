@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from "react";
 import { Outlet } from "react-router";
-import '../assets/styles/AuthStyles.css'
+import './styles/AuthStyles.css'
 
 const AuthLayout = ({ children }: PropsWithChildren) => {
     return(
