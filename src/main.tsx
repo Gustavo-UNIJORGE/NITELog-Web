@@ -11,6 +11,8 @@ import QRCodeLayout from '@/qr-code/QRCodeLayout.tsx';
 import routes from './routes';
 import DocsIndex from './modules/docs/Docs';
 import DocsLayout from '@/docs/DocsLayout';
+import QRCodeCreate from '@/qr-code/QRCodeCreate';
+import QRCodeRead from '@/qr-code/QRCodeRead';
 
 const root = document.getElementById('root');
 
@@ -22,10 +24,11 @@ ReactDOM.createRoot(root!).render(
         <Route element={<AuthLayout />}>
           <Route path={routes.LOGIN} element={<Login />} />
           <Route path='register' element={<Register />} />
-          <Route path='resetPassword' element={<ResetPassword />}/>
+          <Route path='resetPassword' element={<ResetPassword />} />
         </Route>
         <Route element={<QRCodeLayout />} path={routes.QRCODE}>
-          <Route index />
+          <Route index element={<QRCodeRead />} />
+          <Route path={routes.QRCODE_GEN} element={<QRCodeCreate />} />
         </Route>
         <Route element={<DocsLayout/>} path={routes.DOCS}>
           <Route index element={<DocsIndex />} />

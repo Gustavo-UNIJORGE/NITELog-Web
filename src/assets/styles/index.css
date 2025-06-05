@@ -81,3 +81,14 @@ button:focus-visible {
 main {
   color: black;
 }
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+}
+
+.alert {
+  padding: 2em;
+  font-size: 1.75em;
+}
