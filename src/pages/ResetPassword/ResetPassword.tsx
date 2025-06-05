@@ -3,6 +3,8 @@ import { Link } from 'react-router';
 import { useEffect, useState } from "react";
 import validateEmail from "../../utils/validateEmail";
 import { handleInputChange } from "../../utils/handleEmailChange";
+import niteImg from '../../assets/imagens/nite_6.png';
+import UJImg from '../../assets/imagens/unnamed.png';
 
 const ResetPassword = () => {
     const [formData, setFormData] = useState({
@@ -47,6 +49,13 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>, fieldName: keyof t
         }
     }
     return (
+          <div>
+            <div className="logoNite">
+                <img src={niteImg} alt="Logo Nite" style={{ width: '350px' }} />
+            </div>
+            <div className="logoUJ">
+                <img src={UJImg} alt="Logo UJ" style={{ width: '50px' }} />
+            </div>
         <form className="forms" onSubmit={handleFormSubmit}>
 
 
@@ -100,6 +109,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>, fieldName: keyof t
 
 
         </form>
+        </div>
     )
 }
 

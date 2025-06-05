@@ -1,11 +1,12 @@
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router';
-import './assets/styles/index.css'
+import './assets/styles/index.css';
 import Home from './pages/Home/Home.tsx';
 import Login from './pages/Login/Login.tsx';
 import Register from './pages/Register/Register.tsx';
 import AuthLayout from './pages/AuthLayout.tsx';
 import ResetPassword from './pages/ResetPassword/ResetPassword.tsx';
+import './assets/styles/home.css';
 
 const root = document.getElementById('root');
 
