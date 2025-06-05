@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import routes from "@/routes.ts";
+import routes from "@routes";
 
 const Home = () => {
     return(
@@ -8,9 +8,11 @@ const Home = () => {
             <div className="nav">
                 <Link to={routes.LOGIN}>Login</Link>
                 <Link to={routes.QRCODE}>Código QR</Link>
+                <Link to={routes.DOCS}>Documentação</Link>
             </div>
+            
             <footer>
-                <a href='https://nitelogdev.discloud.app/apidoc/index.html'>Documentação</a>
+                <a href='https://nitelogdev.discloud.app/apidoc/index.html'>Swagger</a>
             </footer>
         </>
     )
