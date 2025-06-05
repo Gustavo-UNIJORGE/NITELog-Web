@@ -1,20 +1,25 @@
 interface DocsNavProps {
     fileNames: string[],
+    handleSelect: object,
     selected: string
 }
 
-const DocsNav = ({fileNames, selected}: DocsNavProps) => {
+const DocsNav = ({fileNames, handleSelect, selected}: DocsNavProps) => {
+
     return (
         <aside id='doc-nav'>
             <div>
                 <h2>Arquivos</h2>
-                <div>
+                {/* <div>
                     <input type='text' />
-                </div>
+                </div> */}
                 <ul id='filename-list'>
                     {fileNames.map((fileName) => (
                         <li>
-                            <button disabled={fileName == selected}>
+                            <button 
+                                name={fileName}
+                                onClick={(e) => handleSelect(e)}
+                                disabled={fileName == selected}>
                                 {fileName}
                             </button>
                         </li>

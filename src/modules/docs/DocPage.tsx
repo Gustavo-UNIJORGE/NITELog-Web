@@ -18,7 +18,7 @@ const DocPage = ({path, file, error, content} : DocsProps) => {
                 {error}
             </span>
             <div id='markdown-container'>
-                {content || 
+                {!content &&
                     <span id="empty-content">Nothing.</span>}
                 {content && (
                     <Markdown>

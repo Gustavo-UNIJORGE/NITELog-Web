@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DocPage from './DocPage';
 import DocsNav from './DocsNav';
 // import content from '@root/assets/docs/';
@@ -48,15 +48,16 @@ const DocsIndex = () => {
             setLoading(true);
 
             try {
-                const path = new URL(`${selectedFileName}`, import.meta.url).href;
+                const path = new URL(`/src/assets/docs/${selectedFileName}`, import.meta.url).href;
+                console.log(`src/assets/docs/${selectedFileName}`)
                 const response = await fetch(path);
 
                 if (!response.ok) {
                     throw new Error('Failed to fetch file content');
                 }
-
+                
                 const text = response.text();
-
+                console.log(text)
                 setPromise(text);
                 setError('');
             } catch (err) {
@@ -68,12 +69,13 @@ const DocsIndex = () => {
         }
 
         loadFileContent()
-    }, [selectedFileName])
+    }, [selectedFileName, error])
     
     useEffect(() => {
         const loadContent = async () => {
             try {
-                await promise?.then(content => setContent(content))
+                await promise
+                    ?.then(content => setContent(content))
             } catch (err) {
                 setError('Erro ao ler o conteúdo');
                 console.error('Front-end: Erro no carregamento', err);
@@ -82,10 +84,11 @@ const DocsIndex = () => {
         
         loadContent();
     }, [promise])
-    
-    useEffect(() => {
-        
-    }, [selectedFileName])
+
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setSelectedFileName(event.currentTarget.name)
+    }
+
     return (
         <>
             {(isLoading) ? (
@@ -95,8 +98,15 @@ const DocsIndex = () => {
                 <header>
                     <h1>Docs</h1>
                 </header>
-                <DocsNav fileNames={fileNames} selected={selectedFileName} />
-                <DocPage path={root} file={selectedFileName} error={error} content={content} />
+                <DocsNav 
+                    fileNames={fileNames} 
+                    handleSelect={handleClick}
+                    selected={selectedFileName} />
+                <DocPage 
+                    path={root} 
+                    file={selectedFileName} 
+                    error={error} 
+                    content={content} />
             </main> 
             ) }
             
