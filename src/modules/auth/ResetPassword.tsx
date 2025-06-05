@@ -34,11 +34,10 @@ const ResetPassword = () => {
         }
     }, [errors, validationEnabled])
 
-const handleChange = (e: React.ChangeEvent<HTMLInputElement>, fieldName: keyof typeof formData) => {
-    handleInputChange(e, formData, setFormData, fieldName);
-    if (!validationEnabled) setValidationEnabled(true); 
-}
-
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>, fieldName: keyof typeof formData) => {
+        handleInputChange(e, formData, setFormData, fieldName);
+        if (!validationEnabled) setValidationEnabled(true); 
+    }
 
     const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -48,22 +47,20 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>, fieldName: keyof t
     }
     return (
         <form className="forms" onSubmit={handleFormSubmit}>
-
-
             <div>
                 <label>
                     Email
                 </label>
-    <input
-    type="email"
-    name="email"
-    id="email"
-    className="campoEmail"
-    value={formData.email}
-    placeholder="Digite seu email"
-    disabled={wasSent}
-    onChange={(e) => handleChange(e, 'email')}
-/>
+                <input
+                type="email"
+                name="email"
+                id="email"
+                className="campoEmail"
+                value={formData.email}
+                placeholder="Digite seu email"
+                disabled={wasSent}
+                onChange={(e) => handleChange(e, 'email')}
+            />
 
 
                 {errors.emailRequired && (

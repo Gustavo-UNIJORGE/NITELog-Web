@@ -82,10 +82,15 @@ main {
   color: black;
 }
 
-.flex-col {
+.flex-col, .side-nav {
   display: flex;
   flex-direction: column;
   place-items: center;
+  gap: 2em;
+}
+
+.side-nav {
+  align-items: start;
 }
 
 .alert {

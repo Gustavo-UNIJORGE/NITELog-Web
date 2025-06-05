@@ -4,15 +4,13 @@ import './styles/AuthStyles.css'
 
 const AuthLayout = ({ children }: PropsWithChildren) => {
     return(
-        <>
-            <main>
-                <div className="tituloForms">
-                    <div className="acessarPortal">Acessar o Portal</div>
-                    <div className="texto">Insira seus dados</div>
-                </div>
-                {children || <Outlet />}
-            </main>
-        </>
+        <main>
+            <div className="tituloForms">
+                <div className="acessarPortal">Acessar o Portal</div>
+                <div className="texto">Insira seus dados</div>
+            </div>
+            {children || <Outlet />}
+        </main>
     )
 }
 

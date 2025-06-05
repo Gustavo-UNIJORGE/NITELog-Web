@@ -5,8 +5,10 @@ const QRCodeCreate = () => {
     const [token, setToken] = useState<number>()
     
     const handleClick = () => {
-        const n = Math.random() * 8
-        setToken(n);
+        if (token) {
+            const n = Math.random() * 8
+            setToken(n);
+        }
     }
     
     useEffect(() => {
@@ -14,14 +16,12 @@ const QRCodeCreate = () => {
     }, [])
 
     return(
-        <div>
-            <div>
-                <button 
-                    onClick={handleClick}>
-                    Gerar Token
-                </button>
-            </div>
+        <div className='flex-col'>
             <QRCode value={token?.toString() || ''}/>
+            <button 
+                onClick={handleClick}>
+                Gerar Token
+            </button>
             <span>Escaneie o QR Code acima para marcar presença </span>
         </div>
     )

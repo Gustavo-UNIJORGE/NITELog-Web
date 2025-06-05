@@ -1,8 +1,12 @@
 const routes = {
-  LOGIN: 'login',
+  AUTH: {
+    LOGIN: 'login',
+    REGISTER: 'register',
+    PASSWORD: 'resetPassword'
+  },
   QRCODE: 'qr-code',
   DOCS: 'docs',
-  QRCODE_GEN: 'admin/qr-code',
+  QRCODE_GEN: 'generate',
 }
 
 export default routes;

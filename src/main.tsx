@@ -22,9 +22,9 @@ ReactDOM.createRoot(root!).render(
       <Route index element={<Home />} />
       <Route>
         <Route element={<AuthLayout />}>
-          <Route path={routes.LOGIN} element={<Login />} />
-          <Route path='register' element={<Register />} />
-          <Route path='resetPassword' element={<ResetPassword />} />
+          <Route path={routes.AUTH.LOGIN} element={<Login />} />
+          <Route path={routes.AUTH.REGISTER} element={<Register />} />
+          <Route path={routes.AUTH.PASSWORD} element={<ResetPassword />} />
         </Route>
         <Route element={<QRCodeLayout />} path={routes.QRCODE}>
           <Route index element={<QRCodeRead />} />
