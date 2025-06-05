@@ -119,7 +119,8 @@ main.grid-simple aside>* input {
   width: 100%;
 }
 main#docs {
-  background-color: #213547;
+  /* background-color: ; */
+  background-color: var(--background-color-hex);
 
 }
 #doc-reader {
@@ -129,7 +130,7 @@ main#docs {
   padding: 1em;
   padding-bottom: 3em;
   border-radius: 8px;
-  min-width: 1200px;
+  width: 1420px;
   min-height: 80vh;
   background-color: #00000066;
   border: solid #00000066 3px;
@@ -169,10 +170,15 @@ main#docs {
   width: 100%;
   text-align: start;
   background-color: transparent;
-  /* border: solid #242424 3px; */
+  border: solid transparent 3px;
+}
+#filename-list button:hover {
+  border-color: var(--action-text-color-hex);
 }
 #filename-list button:disabled {
+  cursor: default;
   background-color: #1a1a1a;
+  border: none;
 }
 #empty-file {
   color: rgb(63, 63, 63);
