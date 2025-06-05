@@ -24,7 +24,7 @@ const ResetPassword = () => {
             setErrors({
                 emailRequired: !(formData.email),
                 emailInvalid: !validateEmail(formData.email)
-            });    
+            });
         }
     }, [formData.email, validationEnabled])
     // Altera o estado da validade do formulário se houver alterações nos erros
@@ -34,71 +34,70 @@ const ResetPassword = () => {
         }
     }, [errors, validationEnabled])
 
-    /* OBS: Não foi possível unir esses dois useEffect um altera a dependencia
-    do outro, dessa forma um unico useEffect ficaria permanentemente em looping */
+const handleChange = (e: React.ChangeEvent<HTMLInputElement>, fieldName: keyof typeof formData) => {
+    handleInputChange(e, formData, setFormData, fieldName);
+    if (!validationEnabled) setValidationEnabled(true); 
+}
 
-    const enableValidation = () => setValidationEnabled(true);
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>, fieldName: keyof typeof formData) => {
-        handleInputChange(e, formData, setFormData, fieldName);
-    }
 
     const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if(isValid) {
+        if (isValid) {
             setWasSent(true);
         }
     }
     return (
         <form className="forms" onSubmit={handleFormSubmit}>
-            <div>
-                <Link to='/login'>Retornar para o Login</Link>
-            </div>
 
 
             <div>
                 <label>
                     Email
                 </label>
-                <input 
-                    type="email" 
-                    name="email" 
-                    id="email" 
-                    className="campoEmail"
-                    value={formData.email}
-                    placeholder="Digite seu email"
-                    disabled={wasSent} 
-                    onFocus={enableValidation}
-                    onChange={(e) => handleChange(e, 'email')}
-                />
+    <input
+    type="email"
+    name="email"
+    id="email"
+    className="campoEmail"
+    value={formData.email}
+    placeholder="Digite seu email"
+    disabled={wasSent}
+    onChange={(e) => handleChange(e, 'email')}
+/>
+
+
                 {errors.emailRequired && (
-                    <div 
-                        className="error" 
+                    <div
+                        className="error"
                         id="email-required-error">
-                            Campo obrigatório
+                        Campo obrigatório
                     </div>
                 )}
                 {(!errors.emailRequired && errors.emailInvalid) && (
-                    <div 
-                        className="error" 
+                    <div
+                        className="error"
                         id="email-invalid-error">
-                            Email inválido
+                        Email inválido
                     </div>
                 )}
             </div>
 
             {wasSent && (
-                <div className="error">
+                <div className="sucess">
                     Email enviado com sucesso!
                 </div>
             )}
             <div>
-                <button 
-                    type="submit" 
-                    className="entrar" 
-                    id="send-button" 
+                <button
+                    type="submit"
+                    className="entrar"
+                    id="send-button"
                     disabled={(!isValid || wasSent)}>{wasSent ? 'Enviado' : 'Enviar'}</button>
             </div>
+            <div className="retornarLoginPosicao">
+                <Link to='/login' className="retornarLogin" >Retornar para o Login</Link>
+            </div>
+
 
         </form>
     )
