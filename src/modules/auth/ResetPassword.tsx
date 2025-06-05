@@ -52,17 +52,15 @@ const ResetPassword = () => {
                     Email
                 </label>
                 <input
-                type="email"
-                name="email"
-                id="email"
-                className="campoEmail"
-                value={formData.email}
-                placeholder="Digite seu email"
-                disabled={wasSent}
-                onChange={(e) => handleChange(e, 'email')}
-            />
-
-
+                    type="email"
+                    name="email"
+                    id="email"
+                    className="campoEmail"
+                    value={formData.email}
+                    placeholder="Digite seu email"
+                    disabled={wasSent}
+                    onChange={(e) => handleChange(e, 'email')}
+                />
                 {errors.emailRequired && (
                     <div
                         className="error"
