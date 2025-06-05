@@ -8,3 +8,16 @@ Mas na realidade em projetos maiores pode ser que toda a configuração do types
 *  `tsconfig.app.json`
 *  `tsconfig.node.json`
 *  `vite.config.ts`
+```json
+//tsconfing.app.json
+"baseUrl": "./",
+    "paths": {
+      "@/*": ["src/modules/*"],
+      "@root/*": ["src/*"],
+      "@routes": ["src/routes.ts"],
+      "@pages/*": ["src/pages/*"],
+      "@component/*": ["src/components/*"],
+      "@public/*": ["public/*"],
+      "@styles/*": ["src/assets/styles/*"]
+    }
+```

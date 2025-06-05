@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import DocPage from './DocPage';
 import DocsNav from './DocsNav';
+import '@styles/docs.css'
 // import content from '@root/assets/docs/';
 
 const DocsIndex = () => {
-    const filename = 'Aliasing.md';
+    const root = './assets/docs';
     const [isLoading, setLoading] = useState<boolean>(false)
     const [fileNames, setFileNames] = useState<string[]>([])
     const [selectedFileName, setSelectedFileName] = useState<string>('');
-    const root = 'assets/docs';
-    const rootpath = `../../`;
     const [promise, setPromise] = useState<Promise<string>>()
     const [content, setContent] = useState<string>('');
     const [error, setError] = useState<string>('');

@@ -1,6 +1,8 @@
+import type React from "react";
+
 interface DocsNavProps {
     fileNames: string[],
-    handleSelect: object,
+    handleSelect: (event: React.MouseEvent) => void,
     selected: string
 }
 
