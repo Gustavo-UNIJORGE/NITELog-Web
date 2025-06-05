@@ -1,0 +1,119 @@
+
+main.grid-simple {
+  display: grid;
+  height: 100vh; /*sem contar a navbar*/
+  grid-template-columns: 320px auto 1fr;
+  grid-template-rows: auto 1fr 60vh;
+  grid-template-areas: 
+    "header header header"
+    "aside main main"
+    "footer footer footer"
+  ;
+  /* max-height: 80vh;   */
+}
+main.grid-simple header {
+  grid-area: header;
+}
+main.grid-simple header h1 {
+  font-size: 3em;
+  margin: 0;
+}
+main.grid-simple footer {
+  grid-area: footer;
+}
+main.grid-simple aside {
+  display: flex;
+  flex-direction: column;
+}
+main.grid-simple aside>div {
+  padding: 1em; 
+}
+main.grid-simple aside>* h2 {
+  margin: 0;
+}
+main.grid-simple aside>* input {
+  box-sizing: border-box;
+  width: 100%;
+}
+main#docs {
+  /* background-color: ; */
+  background-color: var(--background-color-hex);
+
+}
+#doc-reader {
+  display: flex;
+  flex-direction: column;
+  background-color: slategrey;
+  padding: 1em;
+  padding-bottom: 3em;
+  border-radius: 8px;
+  width: 1420px;
+  min-height: 60vh;
+  background-color: #00000066;
+  border: solid #00000066 3px;
+}
+
+#doc-reader span#filename {
+  font-weight: 800;
+  color: #7a694a;
+  font-family: monospace;
+  font-size: 24px;
+
+}
+#doc-reader #markdown-container {
+  font-family: inherit;
+  color: #d8d8d8;
+  background-color: #111111aa;
+  border-radius: 16px;
+  border: solid rgb(63, 63, 63) 3px;
+  padding: 2em 4em;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: 70vh;
+  gap: 0;
+}
+#doc-reader #markdown-container * {
+  cursor: default
+}
+#doc-reader #markdown-container h1 {
+  cursor: text;
+}
+
+#filename-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+#filename-list button {
+  width: 100%;
+  text-align: start;
+  background-color: transparent;
+  border: solid transparent 3px;
+}
+#filename-list button:hover {
+  border-color: var(--action-text-color-hex);
+}
+#filename-list button:disabled {
+  cursor: default;
+  background-color: #1a1a1a;
+  border: none;
+}
+#empty-file {
+  color: rgb(63, 63, 63);
+}
+
+#empty-content {
+  font-weight: 600;
+  color: rgb(63, 63, 63);
+  text-transform: capitalize;
+  font-style: italic;
+}
+#empty-content::before {
+  content: "<!--";
+}
+#empty-content::after {
+  content: "-->";
+}

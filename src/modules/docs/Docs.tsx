@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import DocPage from './DocPage';
 import DocsNav from './DocsNav';
+import '@styles/docs.css'
 // import content from '@root/assets/docs/';
 
 const DocsIndex = () => {
-    const filename = 'Aliasing.md';
+    const root = './assets/docs';
     const [isLoading, setLoading] = useState<boolean>(false)
     const [fileNames, setFileNames] = useState<string[]>([])
     const [selectedFileName, setSelectedFileName] = useState<string>('');
-    const root = 'assets/docs';
-    const rootpath = `../../`;
     const [promise, setPromise] = useState<Promise<string>>()
     const [content, setContent] = useState<string>('');
     const [error, setError] = useState<string>('');
@@ -19,17 +18,23 @@ const DocsIndex = () => {
             setLoading(true);
             try {
                 // const path = `./${root}/${filename}`; 
-                const path = '../../assets/docs/*.md' 
-                // const files = import.meta.glob('../../assets/docs/*.md');
+                // const path = '../../assets/docs/*.md' 
                 const files = import.meta.glob('../../assets/docs/*.md');
-                setFileNames(Object.keys(files).map(file => 
-                    file.split('/').pop() || ''
-                ));
-                // setFileList(fileName.filter(Boolean))
-                // Caminho correto considerando a estrutura do projeto
-                if (fileNames.length > 0) 
-                    setSelectedFileName(fileNames[0])
-                
+                setFileNames(Object
+                    .keys(files) // Busca objetos
+                    .map(file => // Remove '/' do nome
+                        file.split('/').pop() || ''
+                    )
+                    .sort((a, b) => // Ordena em ordem alfabética  
+                        a.charCodeAt(0) - b.charCodeAt(0) 
+                    )
+                );
+                if (fileNames.length > 0) {
+                    if (fileNames.indexOf('Index.md'))
+                        setSelectedFileName(fileNames[fileNames.indexOf('Index.md')])
+                    else 
+                        setSelectedFileName(fileNames[0])
+                }
             } catch (err) {
                 setError('Erro ao carregar o arquivo');
                 console.error('Erro na leitura:', err);
@@ -85,7 +90,7 @@ const DocsIndex = () => {
         loadContent();
     }, [promise])
 
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleClickNavItem = (event: React.MouseEvent<HTMLButtonElement>) => {
         setSelectedFileName(event.currentTarget.name)
     }
 
@@ -100,7 +105,7 @@ const DocsIndex = () => {
                 </header>
                 <DocsNav 
                     fileNames={fileNames} 
-                    handleSelect={handleClick}
+                    handleSelect={handleClickNavItem}
                     selected={selectedFileName} />
                 <DocPage 
                     path={root} 
