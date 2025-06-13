@@ -195,3 +195,14 @@ input::placeholder {
     font-size: 12px;
     margin-top: 4px; 
 }
+
+.logoUJ{
+    position: absolute;
+    top:40px;
+    left: 400px;
+}
+
+.logoNite{
+    position: absolute;
+    left:750px;
+}

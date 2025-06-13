@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+.bodyHome {
+    background: #ffffff;
+}
+
+.login {
+    color: #2a0c4b;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.loginPosicao {
+   position: absolute;
+   top:5px;
+   right: 10px;
+}

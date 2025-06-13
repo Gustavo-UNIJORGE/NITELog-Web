@@ -3,6 +3,8 @@ import validateEmail from '../../utils/validateEmail';
 import { handleInputChange } from '../../utils/handleEmailChange';
 import { apiService } from '../../services/apiServices';
 import { Link } from 'react-router';
+import niteImg from '../../assets/imagens/nite_6.png';
+import UJImg from '../../assets/imagens/unnamed.png';
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -85,6 +87,13 @@ const Register = () => {
     };
 
     return (
+          <div>
+            <div className="logoNite">
+                <img src={niteImg} alt="Logo Nite" style={{ width: '350px' }} />
+            </div>
+            <div className="logoUJ">
+                <img src={UJImg} alt="Logo UJ" style={{ width: '50px' }} />
+            </div>
         <form className="forms" onSubmit={handleFormSubmit} noValidate>
             <div>
                 <label>Matrícula</label>
@@ -202,6 +211,7 @@ const Register = () => {
                 </Link>
             </div>
         </form>
+        </div>
     );
 };
 

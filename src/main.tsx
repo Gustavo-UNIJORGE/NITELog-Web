@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router';
+
 // import '@styles/index.css'
 import '@styles/index.css'
 import Home from '@pages/Home.tsx';
@@ -13,6 +14,7 @@ import DocsIndex from './modules/docs/Docs';
 import DocsLayout from '@/docs/DocsLayout';
 import QRCodeCreate from '@/qr-code/QRCodeCreate';
 import QRCodeRead from '@/qr-code/QRCodeRead';
+
 
 const root = document.getElementById('root');
 
