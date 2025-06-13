@@ -1,5 +1,8 @@
 # NiteLog
 
+- [ ] Atualizar mapa de diretório no readme
+- [ ] Adicionar conteúdo sobre módulos (Auth,QRCode)
+
 ## Estrutura
 ```
 src/
